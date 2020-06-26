@@ -9,9 +9,9 @@ We observe the following: (i) Ensemble approach improved classification and loca
 ## Code description
 
 This repository has two python codes and one R code: 
+
 The code ensemble_learning.py is used as the code base for the following: i) UNet based semantic semgnetation to create lung masks for the datasets used in this study; (ii) perform repeated CXR-specific pretraining; (ii) Fine-tuning on COVID-19 detection; (iv) create ensembles of fine-tuned models to improve performance.
 
 The code ensemble_visualization_inter_reader-variability_analysis.py is used as the code base for the following: (i) perform localization studies using ensemble CRM; (ii) compute PR curves for the model versus radiologists and model versus staple generated consensus annotation; (iii) analyse inter-reader variability using kappa and other measures. 4
-
 
 The code anova_code. R is a R code that shows the steps involved in performing statistical analyses including one-way ANOVA, Shaipiro-Wilk, and Levene's tests for this study. 
