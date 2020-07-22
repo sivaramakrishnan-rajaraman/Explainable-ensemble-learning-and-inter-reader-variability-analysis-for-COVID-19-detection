@@ -30,7 +30,7 @@ resnet18_covid_finetuned-0.8958.h5 - best performing, resnet multiclass model fi
 
 The details about the models, the training process, are discussed in the publication available at https://www.medrxiv.org/content/10.1101/2020.07.15.20154385v1.full.pdf+html
 
-You can feel free to use the vgg19_modality_specific-0.6913.h5, best performing, CXR modality specific VGG19 model, truncate and add task specific layers for your custom classificstion task, since the model weight layers are modality-specific ( trained on more than 160,000 CXRs to broadly learn the characteristics of normal and abnormal lungs). Look into the publication at https://www.medrxiv.org/content/10.1101/2020.07.15.20154385v1.full.pdf+html for more details.
+You can feel free to use the vgg19_modality_specific-0.6913.h5, best performing, CXR modality specific VGG19 model, truncate and add task specific layers for your custom classification task, since the model weight layers are modality-specific ( trained on more than 160,000 CXRs to broadly learn the characteristics of normal and abnormal lungs). Look into the publication at https://www.medrxiv.org/content/10.1101/2020.07.15.20154385v1.full.pdf+html for more details.
 
 ### Using the trained models
 
@@ -161,20 +161,22 @@ generate_bounding_box("C:/Users/data/test/",
                       'C:/Users/result/bounding_box.csv',
                       "C:/Users/result/cropped/")
 ```
-Use the generated lung crops for your test data and then used the model weights available in the shared google link for your purpose. For instance, if you want to classify the CXRs as showing normal or abnormal lungs, use vgg19_modality_specific-0.6913.h5 that delivered the best performance in this task. If you want to perform a multi-class classification (normal, bacterial, non COVID-19 viral), use the densenet_multiclass-0.9177.h5 that delivered the best performance in this task. If you want to classify normal and COVID-19+ CXRs, use the resnet18_covid_finetuned-0.8958.h5 model weights toward this task. Gve the path to your directory where you have stored the images to be predicted. 
+Use the generated lung crops for your test data and then used the model weights available in the shared google link for your purpose. For instance, if you want to classify the CXRs as showing normal or abnormal lungs, use vgg19_modality_specific-0.6913.h5 that delivered the best performance in this task. If you want to perform a multi-class classification (normal, bacterial, non COVID-19 viral), use the densenet_multiclass-0.9177.h5 that delivered the best performance in this task. If you want to classify normal and COVID-19+ CXRs, use the resnet18_covid_finetuned-0.8958.h5 model weights toward this task. Give the path to your directory where you have stored the images to be predicted. 
 
 The data folder is organized as follows (depending on the task under study):
+```
 data 
-|-train
-  |-normal
-  |-bacterial
-  |-non COVID-19 viral
-  |-COVID-19 viral
-|-test
-  |-normal
-  |-bacterial
-  |-non COVID-19 viral
-  |-COVID-19 viral
+  |-train  
+    |-normal  
+    |-bacterial  
+    |-non COVID-19 viral  
+    |-COVID-19 viral  
+  |-test
+    |-normal
+    |-bacterial
+    |-non COVID-19 viral
+    |-COVID-19 viral
+  ```
   
  We used Keras ImageDataGenerator to preprocess the test images as follows:
  
@@ -219,7 +221,7 @@ print('The accuracy of model is: ', model_accuracy)
 
 ### Generate LIME-based decisions
 
-To visualize the learned behavior of the pruned models, we shown an instance of how to use LIME visualization with the trained models:
+To visualize the learned behavior of the models, we shown an instance of how to use LIME visualization with the trained models:
 
 ```
 model = load_model('resnet18_covid_finetuned-0.8958.h5') 
